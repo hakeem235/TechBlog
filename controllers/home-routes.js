@@ -20,10 +20,21 @@ router.get("/home", async (req, res) => {
   }
   try {
     const dbPostData = await Post.findAll({
-      include: {
-        model: User,
-        attributes: ['username']
-      }, order: Sequelize.literal('rand()'), limit: 3
+      include: [
+        {
+          model: User,
+          attributes: ['username']
+        },
+        {
+          model: Comments,
+          attributes: ['id', 'user_id', 'post_id', 'comments_text'],
+          include: {
+            model: User,
+            attributes: ['username']
+          }
+        }
+      ],
+      order: Sequelize.literal('rand()'), limit: 3
     }).then((encounters) => {
       const postRandomCards = []
       for (let i = 0; i < encounters.length; i++) {
@@ -71,10 +82,20 @@ router.get('/all', async (req, res) => {
   }
   try {
     const dbPostData = await Post.findAll({
-      include: {
-        model: User,
-        attributes: ['username']
-      },
+      include: [
+        {
+          model: User,
+          attributes: ['username']
+        },
+        {
+          model: Comments,
+          attributes: ['id', 'user_id', 'post_id', 'comments_text'],
+          include: {
+            model: User,
+            attributes: ['username']
+          }
+        }
+      ]
     });
     const postPlain = dbPostData.map((post) => post.get({ plain: true }))
 
@@ -91,17 +112,10 @@ router.get('/all', async (req, res) => {
 
 //new post
 router.get('/newpost', (req, res) => {
-  if (!req.session.user_id) {
-    res.redirect("/")
-  }
-  res.render('createpost');
-});
-
-//dasboard
-router.get('/dashboard', (req, res) => {
   Post.findAll({
     where: {
-      user_id: req.session.user_id
+      user_id: req.session.user_id,
+      user_id: req.session.username,
     },
     attributes: [
       'id',
@@ -124,11 +138,56 @@ router.get('/dashboard', (req, res) => {
     ]
   })
     .then(dbPostData => {
-      console.log(dbPostData)
       const post = dbPostData.map(post => post.get({ plain: true }));
-      console.log(post)
+      res.render('createpost', {
+        post,
+        loggedIn: true
+      });
+    }).catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+
+//dasboard
+router.get('/dashboard', (req, res) => {
+  Post.findAll({
+    where: {
+      user_id: req.session.user_id,
+
+    },
+
+    attributes: [
+      'id',
+      'title',
+      'content',
+      'createdAt'
+    ],
+    include: [
+      {
+        model: User,
+        attributes: ['username']
+      },
+      {
+        model: Comments,
+        attributes: ['id', 'user_id', 'post_id', 'comments_text'],
+        include: {
+          model: User,
+          attributes: ['username']
+        }
+      }
+    ]
+  })
+    .then(dbPostData => {
+
+      const post = dbPostData.map(post => post.get({ plain: true }));
+      const comments = post.filter(post => post.comments)
+      console.log("comments", comments[0].comments)
+      post.reverse();
       res.render('dashboard', {
         post,
+        comments,
         loggedIn: req.session.loggedIn
       });
     }).catch(err => {
@@ -137,6 +196,7 @@ router.get('/dashboard', (req, res) => {
     });
 });
 
+
 //view one post
 router.get("/singlepost/:id", async (req, res) => {
   if (!req.session.user_id) {
@@ -144,7 +204,22 @@ router.get("/singlepost/:id", async (req, res) => {
   }
   try {
 
-    const postData = await Post.findByPk(req.params.id);
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['username']
+        },
+        {
+          model: Comments,
+          attributes: ['id', 'post_id', 'user_id', 'comments_text'],
+          include: {
+            model: User,
+            attributes: ['username']
+          }
+        }
+      ]
+    })
     const singlePostData = postData.get({ plain: true });
     res.render('singlepost', {
       ...singlePostData,
@@ -155,6 +230,7 @@ router.get("/singlepost/:id", async (req, res) => {
   }
 });
 
+//edit post
 router.get('/edit/:id', (req, res) => {
   Post.findOne({
     where: {
@@ -194,6 +270,17 @@ router.get('/edit/:id', (req, res) => {
     console.log(err);
     res.status(500).json(err)
   })
+});
+
+
+//add comment
+router.get('/addcomment', (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect('/home');
+    return;
+  }
+  res.render("newcomment", {
+  });
 })
 
 
@@ -217,3 +304,4 @@ router.get('/login', (req, res) => {
   res.render('login')
 })
 
+module.exports = router;
