@@ -1,33 +1,44 @@
-<section class="d-flex justify-content-center align-items-center mt-3 p-5">
+<section class="p-5 p-lg-0 text-center text-sm-start">
   <div class="container">
-    <div class="card">
-      <form class="px-4 py-3">
-        <div class="mb-3">
-          <label for="exampleDropdownFormEmail1" class="form-label">Email
-            address</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleDropdownFormEmail1"
-            placeholder="email@example.com"
-          />
+    <div class="d-sm-flex align-items-center justify-content-between">
+      <div>
+        <h1>Welcome to uor Tech<span class="text-warning">Bole</span></h1>
+        <h3>Please Login or <a href="./signup.html">Sign Up</a></h3>
+        <div class="container mt-3">
+          <div class="card">
+            <form class="px-4 py-3">
+              <div class="mb-3">
+                <label for="exampleDropdownFormEmail1" class="form-label">Email
+                  address</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="exampleDropdownFormEmail1"
+                  placeholder="email@example.com"
+                />
+              </div>
+              <div class="mb-3">
+                <label
+                  for="exampleDropdownFormPassword1"
+                  class="form-label"
+                >Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="exampleDropdownFormPassword1"
+                  placeholder="Password"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+          </div>
         </div>
-        <div class="mb-3">
-          <label
-            for="exampleDropdownFormPassword1"
-            class="form-label"
-          >Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="exampleDropdownFormPassword1"
-            placeholder="Password"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-      </form>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="signup.html">New around here? Sign up</a>
+      </div>
+      <img
+        class="img-fluid w-50 d-none d-sm-block"
+        src="./public/img/code.svg"
+        alt=""
+      />
     </div>
   </div>
 </section>

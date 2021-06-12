@@ -1,0 +1,17 @@
+[
+    {
+      "user_id": "1",
+      "title": "How Apple's efforts to bring privacy to the masses will change the web",
+      "content": "Apple has announced a swathe of upgrades for its tablet, phone and computer operating systems that could change the way millions of people’s data is transmitted over the internet – a boon for privacy enthusiasts, but a potential problem for advertisers, law enforcement agencies and governments. At Apple’s Worldwide Developers Conference yesterday, the company announced that upcoming updates to its web browser will offer an anonymous browsing feature called Private Relay. This will disguise user details from website operators by using a series of intermediary servers. Software to do this, such as the Tor network, already exists, but Apple’s move will make this kind of obfuscation far more mainstream."
+    },
+    {
+      "user_id": "2",
+      "title": "Google is using AI to design processors that run AI more efficiently",
+      "content": "Engineers at Google have tasked an artificial intelligence with designing faster and more efficient processors – and then used its chip designs to develop the next generation of specialised computers that run the very same type of AI algorithms.Google operates at such a large scale that it designs its own computer chips rather than buying commercial products. This allows it to optimise the chips to run its own software, but the process is time-consuming and expensive. A custom chip usually takes two to three years to develop."
+    },
+    {
+      "user_id": "3",
+      "title": "Quantum internet: The race is on to build an unhackable online world",
+      "content": "MANY of us have uploaded our lives to the internet. Banking, work emails, social media, dating profiles, medical records – all that vital, sensitive information. So it is a little disconcerting that the internet has a fatal security flaw. Don’t panic; our private information is safe for now. But before very long the encryption algorithms that protect us online are going to crack. That is the urgent driving force behind a new, more secure kind of internet that harnesses the power of the quantum realm. Once up and running, the system will be able to do a lot more than protect our data. It could bring us unforeseen quantum apps, and maybe become the scaffold for a world-spanning quantum computer of incredible power."
+    }
+  ]
