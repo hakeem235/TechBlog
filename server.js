@@ -1,16 +1,17 @@
 const path = require('path');
 const express = require('express');
+// Import express-session
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-const routes = require('./controllers');
-const helpers = require('./utils/helpers');
-
-const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+
+const routes = require('./controllers');
+const sequelize = require('./config/connection');
+//const helpers = require('./utils/helpers');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
 
 
 
@@ -26,13 +27,25 @@ const sess = {
 
 app.use(session(sess));
 
-const hbs = exphbs.create({ helpers });
+app.use(function (req, res, next) {
+  res.locals.session = req.session;
+  next();
+});
 
+
+const hbs = exphbs.create({});
+//templates
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+
+
 app.use(express.json());
+
+//to collect data that sent from the user
 app.use(express.urlencoded({ extended: true }));
+
+//css, imgs, js
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
