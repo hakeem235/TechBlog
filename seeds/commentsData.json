@@ -1,0 +1,32 @@
+[
+    {
+      "user_id": "1",
+      "post_id": "2",
+      "comments_text": "I like the way you think!"
+    },
+    {
+      "user_id": "2",
+      "post_id": "2",
+      "comments_text": "Very nice!"
+    },
+    {
+      "user_id": "3",
+      "post_id": "4",
+      "comments_text": "Well done!"
+    },
+    {
+      "user_id": "4",
+      "post_id": "3",
+      "comments_text": "I would definitely recommend this."
+    },
+    {
+      "user_id": "5",
+      "post_id": "1",
+      "comments_text": "10 out of 10!"
+    },
+    {
+      "user_id": "1",
+      "post_id": "1",
+      "comments_text": "Would you mind to share the link?"
+    }
+  ]
