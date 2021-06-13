@@ -3,17 +3,26 @@
     <div class="d-sm-flex align-items-center justify-content-between">
       <div>
         <h1>Welcome to uor Tech<span class="text-warning">Bole</span></h1>
-        <h3>Go back to Login page <a href="./login.html">Login</a></h3>
+        <h3>Go back to Login page <a href="/login">Login</a></h3>
         <div class="container mt-3">
           <div class="card">
-            <form class="px-4 py-3">
+            <form class="px-4 py-3" id="signinForm">
+              <div class="mb-3">
+                <label class="form-label">username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username-signup"
+                  placeholder="please enter your user name"
+                />
+              </div>
               <div class="mb-3">
                 <label for="exampleDropdownFormEmail1" class="form-label">Email
                   address</label>
                 <input
                   type="email"
                   class="form-control"
-                  id="exampleDropdownFormEmail1"
+                  id="email-signup"
                   placeholder="email@example.com"
                 />
               </div>
@@ -25,7 +34,7 @@
                 <input
                   type="password"
                   class="form-control"
-                  id="exampleDropdownFormPassword1"
+                  id="password-signup"
                   placeholder="Password"
                 />
               </div>
@@ -39,9 +48,11 @@
       </div>
       <img
         class="img-fluid w-50 mt-5 d-none d-sm-block"
-        src="./public/img/react.svg"
+        src="/img/react.svg"
         alt=""
       />
     </div>
   </div>
 </section>
+
+<script src="/js/signup.js"></script>

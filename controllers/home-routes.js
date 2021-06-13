@@ -13,73 +13,33 @@ router.get("/", (req, res) => {
   });
 });
 
-//gets 6 random posts
-router.get("/home", async (req, res) => {
-  if (!req.session.user_id) {
-    res.redirect("/")
-  }
-  try {
-    const dbPostData = await Post.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['username']
-        },
-        {
-          model: Comments,
-          attributes: ['id', 'user_id', 'post_id', 'comments_text'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
-        }
-      ],
-      order: Sequelize.literal('rand()'), limit: 3
-    }).then((encounters) => {
-      const postRandomCards = []
-      for (let i = 0; i < encounters.length; i++) {
-        let thisPost = encounters[i].get({ plain: true })
-        postRandomCards.push(thisPost)
-      }
-      console.log('thisPost', postRandomCards)
-      res.render('post', {
-        postArr: postRandomCards,
-        user_id: req.session.username,
-      });
-    })
-  } catch (err) {
-    console.log(err)
-    res.status(500).json(err);
-  }
-});
 
-
-router.get("/home", async (req, res) => {
-  if (!req.session.user_id) {
-    res.redirect("/")
-  }
-  try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] }
-    });
-    console.log(userData)
-    const userArr = userData.map((user) => user.get({ plain: true }));
-    console.log(userArr)
-    res.render('home', {
-      user: userArr,
-      loggedIn: true
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
+// router.get("/home", async (req, res) => {
+//   if (!req.session.user_id) {
+//     res.redirect("/")
+//   }
+//   try {
+//     const userData = await User.findAll({
+//       attributes: { exclude: ['password'] }
+//     });
+//     console.log(userData)
+//     const userArr = userData.map((user) => user.get({ plain: true }));
+//     console.log(userArr)
+//     res.render('home', {
+//       user: userArr,
+//       loggedIn: true
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 
 //view all posts
 router.get('/all', async (req, res) => {
-  if (!req.session.user_id) {
-    res.redirect("/")
-  }
+  // if (!req.session.user_id) {
+  //   res.redirect("/")
+  // }
   try {
     const dbPostData = await Post.findAll({
       include: [
@@ -150,8 +110,8 @@ router.get('/newpost', (req, res) => {
 });
 
 
-//dasboard
-router.get('/dashboard', (req, res) => {
+//dasbord
+router.get('/dashbord', (req, res) => {
   Post.findAll({
     where: {
       user_id: req.session.user_id,
@@ -183,9 +143,8 @@ router.get('/dashboard', (req, res) => {
 
       const post = dbPostData.map(post => post.get({ plain: true }));
       const comments = post.filter(post => post.comments)
-      console.log("comments", comments[0].comments)
       post.reverse();
-      res.render('dashboard', {
+      res.render('dashbord', {
         post,
         comments,
         loggedIn: req.session.loggedIn
@@ -302,6 +261,17 @@ router.get('/login', (req, res) => {
     return;
   }
   res.render('login')
+})
+
+router.get("/logout", (req, res)=>{
+  if (req.session.loggedIn){
+    req.session.destroy(() => {
+      res.status(200).end()
+    })
+  }else{
+    res.status(400).end()
+  }
+
 })
 
 module.exports = router;
