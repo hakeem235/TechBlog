@@ -1,7 +1,5 @@
 const createPost = async (event) => {
-    console.log("fired")
-    console.log(event)
-    console.log('createPost')
+   
     event.preventDefault();
 
     const newTitle = document.querySelector('#newTitle').value;

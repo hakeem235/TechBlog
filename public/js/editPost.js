@@ -1,7 +1,6 @@
 const editPost = async (event) => {
     // console.log(event.target.attributes[0].value)
-    console.log(event.target.getAttribute("data-post"))
-    console.log('editPost')
+    
     event.preventDefault();
     const title = document.querySelector('#postTitle').value;
     const content = document.querySelector('#content').value;

@@ -1,9 +1,5 @@
 const deletePost = async (event) => {
-    console.log("fired")
-    console.log(event.target.parentElement)
-    console.log('deletePost')
-  
-  
+   
     event.preventDefault();
   
     const id = event.target.parentElement.getAttribute("data-post")
