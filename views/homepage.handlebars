@@ -5,10 +5,7 @@
   <div class="container">
     <div class="d-sm-flex align-items-center justify-content-between">
       <div>
-        <h1>Welcome to uor Tech<span class="text-warning">Bole</span></h1>
-        <p class="lead my-4">
-          <h3>{username}</h3>
-        </p>
+        <h1>Welcome <span class="text-warning">{{session.username}}</span> to uor Tech<span class="text-warning">Bole</span></h1>
       </div>
       <img
         class="img-fluid w-50 d-none d-sm-block"
@@ -20,35 +17,21 @@
 </section>
 
 <!-- Postes  -->
+{{!-- {{#each post }} --}}
 <section class="p-5">
   <div class="container">
     <div class="row text-center g-4">
       <div class="col-md">
         <div class="card mb-4 bg-light">
-          <h3 class="card-title p-3 text-start">Title</h3>
+          <a href="/singlepost/{{post.id}}"><h3 class="card-title p-3 text-start">{{post.title}}</h3></a>
+          <p class="text-start px-4">wirtin by <span>{{user.username}}</span></p>
           <p class="card-text text-start px-4">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure, quas
-            quidem possimus dolorum esse eligendi?
+           {{post.content}}
           </p>
-          <hr >
-          <h4 class="text-start px-4">Comments</h4>
-          <p class="text-start p-4"><span>{username}: </span>Lorem ipsum dolor
-            sit amet consectetur, adipisicing elit. Impedit officia placeat
-            eligendi atque, ab molestiae hic doloribus eius pariatur qui! Nobis
-            error doloribus in voluptatibus atque deserunt incidunt dicta ab!</p>
-          <div class="input-group mb-3 px-2">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="add your comment" id="addComment"
-            />
-            <button
-              class="btn btn-outline-secondary"
-              type="button"
-            >Send</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+{{!-- {{/each}} --}}
