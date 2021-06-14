@@ -14,25 +14,25 @@ router.get("/", (req, res) => {
 });
 
 
-// router.get("/home", async (req, res) => {
-//   if (!req.session.user_id) {
-//     res.redirect("/")
-//   }
-//   try {
-//     const userData = await User.findAll({
-//       attributes: { exclude: ['password'] }
-//     });
-//     console.log(userData)
-//     const userArr = userData.map((user) => user.get({ plain: true }));
-//     console.log(userArr)
-//     res.render('home', {
-//       user: userArr,
-//       loggedIn: true
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+router.get("/home", async (req, res) => {
+  if (!req.session.user_id) {
+    res.redirect("/")
+  }
+  try {
+    const userData = await User.findAll({
+      attributes: { exclude: ['password'] }
+    });
+    console.log(userData)
+    const userArr = userData.map((user) => user.get({ plain: true }));
+    console.log(userArr)
+    res.render('homepage', {
+      user: userArr,
+      loggedIn: true
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 
 //view all posts
@@ -99,7 +99,7 @@ router.get('/newpost', (req, res) => {
   })
     .then(dbPostData => {
       const post = dbPostData.map(post => post.get({ plain: true }));
-      res.render('createpost', {
+      res.render('newPost', {
         post,
         loggedIn: true
       });
@@ -221,7 +221,7 @@ router.get('/edit/:id', (req, res) => {
       return;
     }
     const post = dbPostData.get({ plain: true });
-    res.render('postedit', {
+    res.render('editPost', {
       post,
       loggedIn: true
     })
