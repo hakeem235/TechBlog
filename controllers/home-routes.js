@@ -19,14 +19,21 @@ router.get("/home", async (req, res) => {
     res.redirect("/")
   }
   try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] }
+    const userData = await Post.findAll({
+      include: [User]
+      // attributes: { includes: [
+      //   {
+      //     model: User,
+      //     attributes: ['username']
+      //   }
+      // ]}
     });
     console.log(userData)
-    const userArr = userData.map((user) => user.get({ plain: true }));
-    console.log(userArr)
+    const postArr = userData.map((post) => post.get({ plain: true }));
+    console.log(postArr)
+
     res.render('homepage', {
-      user: userArr,
+      posts: postArr,
       loggedIn: true
     });
   } catch (err) {
@@ -37,9 +44,9 @@ router.get("/home", async (req, res) => {
 
 //view all posts
 router.get('/all', async (req, res) => {
-  // if (!req.session.user_id) {
-  //   res.redirect("/")
-  // }
+  if (!req.session.user_id) {
+    res.redirect("/")
+  }
   try {
     const dbPostData = await Post.findAll({
       include: [
@@ -60,8 +67,7 @@ router.get('/all', async (req, res) => {
     const postPlain = dbPostData.map((post) => post.get({ plain: true }))
 
 
-    res.render('post', {
-      postArr: postPlain,
+    res.render('homepage', { postPlain,
     });
   } catch (err) {
     console.log(err);
@@ -145,7 +151,7 @@ router.get('/dashbord', (req, res) => {
       const comments = post.filter(post => post.comments)
       post.reverse();
       res.render('dashbord', {
-        post,
+        postArr: post,
         comments,
         loggedIn: req.session.loggedIn
       });

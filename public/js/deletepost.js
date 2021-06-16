@@ -9,7 +9,7 @@ const deletePost = async (event) => {
         post_id: id
       }),
       headers: {
-        'Content-Type': 'aplication/json'
+        'Content-Type': 'application/json'
       }
     });
     console.log(response)

@@ -1,7 +1,6 @@
 <!-- Showcase -->
 <section
-  class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start"
->
+  class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
   <div class="container">
     <div class="d-sm-flex align-items-center justify-content-between">
       <div>
@@ -16,8 +15,14 @@
   </div>
 </section>
 
+<section class="m-5">
+  <div class="container">
+    <h1>Please Login or Signin to enter ur website</h1>
+  </div>
+</section>
+
 <!-- Postes  -->
-{{!-- {{#each post }} --}}
+{{#each posts as |post| }}
 <section class="p-5">
   <div class="container">
     <div class="row text-center g-4">
@@ -34,4 +39,4 @@
     </div>
   </div>
 </section>
-{{!-- {{/each}} --}}
+{{/each}}

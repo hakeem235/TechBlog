@@ -1,28 +1,36 @@
-<section class="p-5">
-  <div class="container">
-    <div class="row text-center g-4">
-      <div class="col-md">
-        <div class="card mb-4 bg-light">
-          <h3 class="card-title p-3 text-start">Title</h3>
-          <p class="card-text text-start px-4">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere,
-            magnam quaerat doloribus neque tenetur consectetur. Nobis, illo
-            delectus asperiores aperiam optio placeat repellendus saepe hic
-            incidunt perferendis, quasi inventore animi?
-          </p>
-          <hr>
-          <div class="d-flex justify-content-start align-items-center">
-            <a href="/editpost" type="button" class="btn btn-secondary mb-3 mx-2" id="editPost">Edit post</a>
-            <a type="button" class="btn btn-danger mb-3" id="deletePost">Delete post</a>
+{{#each postArr as |post|}}
+  <section class="p-5">
+    <div class="container">
+      <div class="row text-center g-4">
+        <div class="col-md">
+          <div class="card mb-4 bg-light">
+            <h3 class="card-title p-3 text-start">{{post.title}}</h3>
+            <p class="card-text text-start px-4">
+              {{post.content}}
+            </p>
+            <hr />
+            <div class="d-flex justify-content-start align-items-center">
+              <a
+                href="/editpost"
+                type="button"
+                class="btn btn-secondary mb-3 mx-2"
+                id="editPost"
+              >Edit post</a>
+              <a
+                type="button"
+                class="btn btn-danger mb-3"
+                id="deletePost"
+              >Delete post</a>
+            </div>
           </div>
         </div>
       </div>
-      <div
-        class="container d-flex justify-content-center align-items-center mb-3"
-      >
-        <a href="/newPost" type="button" class="btn btn-warning" id="addNewPost">Add new
-          post</a>
-      </div>
     </div>
+  </section>
+{{/each}}
+<section class="m-5">
+  <div class="container d-flex justify-content-center align-items-center mb-3">
+    <a href="/newPost" type="button" class="btn btn-warning" id="addNewPost">Add
+      new post</a>
   </div>
 </section>

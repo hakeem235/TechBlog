@@ -2,9 +2,7 @@ const router = require("express").Router();
 const { Post, Comments, User } = require('../../models');
 
 
-// gets all posts and all its database columns
 router.get('/all', async (req, res) => {
-  // If there is no session user id, redirects to the login page and blocks access
   if (!req.session.user_id) {
     res.redirect("/")
   }
@@ -23,28 +21,23 @@ router.get('/all', async (req, res) => {
 });
 
 
-//post by id
 router.get('/:id', async (req, res) => {
   if (!req.session.user_id) {
     res.redirect("/")
   }
 
   try {
-    // Finds a post by 
     const dbPostData = await Post.findByPk(req.params.id);
 
     if (!dbPostData) {
       res.status(404).json({ message: 'No post found with that id!' });
       return;
     }
-
-    //res.status(200).json(dbBirdData);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//delete post
 router.delete('/:id/delete', async (req, res) => {
   try {
     const postData = await Post.destroy({

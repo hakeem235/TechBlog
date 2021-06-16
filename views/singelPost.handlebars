@@ -6,7 +6,8 @@
         <div class="card mb-4 bg-light">
           <h3 class="card-title p-3 text-start">{{post.title}}</h3>
           <p class="text-start px-4">wirtin by
-            <span>{{user.username}}</span></p>
+            <span>{{user.username}}</span>
+          </p>
           <p class="card-text text-start px-4">
             {{post.content}}
           </p>
@@ -18,16 +19,8 @@
             qui! Nobis error doloribus in voluptatibus atque deserunt incidunt
             dicta ab!</p>
           <div class="input-group mb-3 px-2">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="add your comment"
-              id="addComment"
-            />
-            <button
-              class="btn btn-outline-secondary"
-              type="button"
-            >Send</button>
+            <input type="text" class="form-control" placeholder="add your comment" id="addComment" />
+            <button class="btn btn-outline-secondary" type="button" id="addComment">Send</button>
           </div>
         </div>
       </div>
