@@ -21,12 +21,6 @@ router.get("/home", async (req, res) => {
   try {
     const userData = await Post.findAll({
       include: [User]
-      // attributes: { includes: [
-      //   {
-      //     model: User,
-      //     attributes: ['username']
-      //   }
-      // ]}
     });
     console.log(userData)
     const postArr = userData.map((post) => post.get({ plain: true }));
@@ -39,41 +33,6 @@ router.get("/home", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-});
-
-
-//view all posts
-router.get('/all', async (req, res) => {
-  if (!req.session.user_id) {
-    res.redirect("/")
-  }
-  try {
-    const dbPostData = await Post.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['username']
-        },
-        {
-          model: Comments,
-          attributes: ['id', 'user_id', 'post_id', 'comments_text'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
-        }
-      ]
-    });
-    const postPlain = dbPostData.map((post) => post.get({ plain: true }))
-
-
-    res.render('homepage', { postPlain,
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-
 });
 
 //new post
@@ -171,6 +130,7 @@ router.get("/singlepost/:id", async (req, res) => {
 
     const postData = await Post.findByPk(req.params.id, {
       include: [
+        
         {
           model: User,
           attributes: ['username']
@@ -186,7 +146,7 @@ router.get("/singlepost/:id", async (req, res) => {
       ]
     })
     const singlePostData = postData.get({ plain: true });
-    res.render('singlepost', {
+    res.render('singelpost', {
       ...singlePostData,
       loggedIn: req.session.loggedIn,
     });
@@ -227,7 +187,7 @@ router.get('/edit/:id', (req, res) => {
       return;
     }
     const post = dbPostData.get({ plain: true });
-    res.render('editPost', {
+    res.render('editpost', {
       post,
       loggedIn: true
     })
