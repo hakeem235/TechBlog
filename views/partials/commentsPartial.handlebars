@@ -1,0 +1,12 @@
+<div class="commentPost">
+    <h4 class="text-start px-4">Comments</h4>
+    {{#each this}}
+    <p class="text-start p-4"><span>{{user.username}}:
+        </span>{{comments_text}}</p>
+    {{/each}}
+    <div class="input-group mb-3 px-2">
+        <input type="text" class="form-control" placeholder="add your comment" id="addComment" />
+        <button class="btn btn-outline-secondary" type="button" id="addComment">Send</button>
+    </div>
+
+</div>
