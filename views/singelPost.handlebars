@@ -12,10 +12,22 @@
             {{content}}
           </p>
           <hr />
-          {{>commentsPartial comment}}
+          <div class="commentPost">
+            <h4 class="text-start px-4">Comments</h4>
+            {{#each comments}}
+            <p class="text-start p-2"><span>{{user.username}}:
+              </span>{{comments_text}}</p>
+              <hr>
+            {{/each}}
+            <div class="input-group mb-3 px-2">
+              <input type="text" class="form-control" placeholder="add your comment" id="newComm" />
+              <button class="btn btn-outline-secondary" type="button" id="addComment" data-post='{{id}}'>Send</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script src="/js/comment.js"></script>

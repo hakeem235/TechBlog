@@ -146,6 +146,7 @@ router.get("/singlepost/:id", async (req, res) => {
       ]
     })
     const singlePostData = postData.get({ plain: true });
+    console.log(singlePostData)
     res.render('singelpost', {
       ...singlePostData,
       loggedIn: req.session.loggedIn,
@@ -156,7 +157,7 @@ router.get("/singlepost/:id", async (req, res) => {
 });
 
 //edit post
-router.get('/edit/:id', (req, res) => {
+router.get('/editpost/:id', (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id
@@ -189,6 +190,7 @@ router.get('/edit/:id', (req, res) => {
     const post = dbPostData.get({ plain: true });
     res.render('editpost', {
       post,
+      id : req.params.id,
       loggedIn: true
     })
   }).catch(err => {

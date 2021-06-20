@@ -38,6 +38,8 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+
+// Delete Post
 router.delete('/:id/delete', async (req, res) => {
   try {
     const postData = await Post.destroy({
@@ -119,6 +121,7 @@ router.post('/create', (req, res) => {
 //edit post
 
 router.put('/:id', (req, res) => {
+console.log("hello ")
   Post.update({
     title: req.body.title,
     content: req.body.content

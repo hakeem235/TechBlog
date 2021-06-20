@@ -10,8 +10,8 @@
           </p>
           <hr />
           <div class="d-flex justify-content-start align-items-center">
-            <a href="/editpost" type="button" class="btn btn-secondary mb-3 mx-2" id="editPost">Edit post</a>
-            <a type="button" class="btn btn-danger mb-3" id="deletePost">Delete post</a>
+            <a href="/editpost/{{post.id}}" type="button" class="btn btn-secondary mb-3 mx-2" id="editPost">Edit post</a>
+            <a type="button"  class="btn btn-danger mb-3" id="deletePost" data-post='{{post.id}}'>Delete post</a>
           </div>
         </div>
       </div>
@@ -25,3 +25,4 @@
       new post</a>
   </div>
 </section>
+<script src="/js/deletepost.js"></script>

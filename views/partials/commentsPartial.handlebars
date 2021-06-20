@@ -1,6 +1,8 @@
 <div class="commentPost">
     <h4 class="text-start px-4">Comments</h4>
-    {{#each this}}
+   
+    <h1>{{comments}}</h1>
+    {{#each comment }}
     <p class="text-start p-4"><span>{{user.username}}:
         </span>{{comments_text}}</p>
     {{/each}}

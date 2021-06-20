@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 // Creates a new comment
-router.post('/newcomment', async (req, res) => {
+router.post('/', async (req, res) => {
   if (!req.session.user_id) {
     res.redirect("/")
   }
@@ -24,6 +24,7 @@ router.post('/newcomment', async (req, res) => {
     });
     res.status(200).json(commentsData);
   } catch (err) {
+    console.log(err)
     res.status(400).json(err);
   }
 });
