@@ -147,7 +147,7 @@ router.get("/singlepost/:id", async (req, res) => {
     })
     const singlePostData = postData.get({ plain: true });
     console.log(singlePostData)
-    res.render('singelpost', {
+    res.render('singelPost', {
       ...singlePostData,
       loggedIn: req.session.loggedIn,
     });
