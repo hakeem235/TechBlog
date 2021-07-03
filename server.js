@@ -3,6 +3,7 @@ const express = require('express');
 // Import express-session
 const session = require('express-session');
 const exphbs = require('express-handlebars');
+const helpers = require('./utils/helpers');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 
@@ -32,8 +33,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-
-const hbs = exphbs.create({});
+const hbs = exphbs.create({ helpers });
 //templates
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');

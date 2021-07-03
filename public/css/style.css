@@ -3,8 +3,3 @@ body::before {
     content: '';
     height: 60px;
   }
-
-  hr {
-      width: 95%;
-  }
-  
